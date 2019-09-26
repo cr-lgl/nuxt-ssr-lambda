@@ -5,17 +5,24 @@
   "author": "cherry",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "dev": "HOST=0.0.0.0 nuxt",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
-    "generate": "nuxt generate"
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "deploy": "npm run build && sls deploy",
+    "start-sls": "npm run build && sls offline start"
   },
   "dependencies": {
     "aws-serverless-express": "^3.3.6",
     "cross-env": "^5.2.1",
     "express": "^4.16.4",
     "nuxt": "^2.0.0",
-    "serverless": "^1.53.0"
+    "nuxt-start": "^2.9.2",
+    "serverless": "^1.53.0",
+    "serverless-apigw-binary": "^0.4.4",
+    "serverless-domain-manager": "^3.3.0",
+    "serverless-http": "^2.3.0",
+    "serverless-offline": "^5.11.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

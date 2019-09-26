@@ -48,5 +48,9 @@ module.exports = {
     */
     extend (config, ctx) {
     }
+  },
+
+  render: {
+    compressor: false,
   }
 }

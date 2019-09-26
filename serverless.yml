@@ -1,0 +1,26 @@
+service: nuxt-ssr-lambda
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${self:custom.secrets.NODE_ENV}
+  region: ap-northeast-2
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+
+functions:
+  nuxt:
+    handler: server/index.nuxt
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+
+plugins:
+  - serverless-apigw-binary
+  - serverless-offline
+
+custom:
+  secrets: ${file(secrets.json)}
+  apigwBinary:
+    types:
+      - '*/*'
